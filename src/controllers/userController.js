@@ -45,9 +45,22 @@ const login = async (req, res) => {
   }
 }
 
+const addToCart = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const { id } = req.body;
+    const result = await userServices.addToCart(name, id);
+    res.status(200).json(result);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   createUser,
   updateUser,
   removeUser,
   login,
+  addToCart
 };

@@ -11,7 +11,7 @@ const getAllProducts = async (req, res) => {
   }
 }
 
-const getProductById = async (req, res) => {
+const getProductById = async (req, res) => { // ask about res.json() being async
   try {
     const { id } = req.params;
     const result = await productServices.getProductById(id);

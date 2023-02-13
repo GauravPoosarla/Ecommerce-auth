@@ -6,5 +6,6 @@ router.put('/user/:id', userController.updateUser);
 router.delete('/user/:id', userController.removeUser);
 
 router.post('/login', userController.login);
+router.post('/addToCart/:name', userController.addToCart);
 
 module.exports = router;

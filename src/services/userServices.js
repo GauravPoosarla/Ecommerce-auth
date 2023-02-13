@@ -39,9 +39,25 @@ const login = async (username, password) => {
   return token;
 }
 
+const addToCart = async (name, id) => {
+  const result = await db.User.findOne({ where: { id } });
+  console.log(result);
+  const cart = result.cart;
+  const productResult = await db.Product.findOne({ where: { name } });
+  if(!productResult) {
+    throw new Error('product not found');
+  }
+  const productId = productResult.id;
+  cart.push(productId);
+  const secondResult = await db.User.update({ cart }, { where: { id } });
+  const finalResult = await db.User.findOne({ where: { id } });
+  return finalResult;
+}
+
 module.exports = {
   createUser,
   updateUser,
   removeUser,
   login,
+  addToCart
 };
